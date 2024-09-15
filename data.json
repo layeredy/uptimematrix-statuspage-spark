@@ -1,0 +1,39 @@
+{
+  "Whitelabel": false,
+  "RandomOperationalMessage": true,
+  "maintenanceAlerts": [
+    {
+      "date": "2021-01-16T12:00:00Z",
+      "message": "Hey!",
+      "title": "Upgrades to US 1 on July 31st"
+    }
+  ],
+  "sections": {
+    "maintenanceAlerts": true,
+    "statusUpdates": true
+  },
+  "services": {
+    "Example 1": {
+      "Example service 1": "Operational",
+      "Example service 2": "Operational",
+      "Example service 3": "Operational"
+    },
+    "Example 2": {
+      "Another example service 1": "Operational",
+      "Another example service 2": "Operational",
+      "Another example service 3": "Operational"
+    },
+    "Example 3": {
+      "Again another example service 1": "Operational",
+      "Again another example service 2": "Operational"
+    }
+  },
+  "statusUpdates": [
+    {
+      "color": "#7a54f8",
+      "date": "2024-08-10T09:00:00Z",
+      "message": "We like playing uno... and developing software",
+      "title": "This is a demo site!"
+    }
+  ]
+}
