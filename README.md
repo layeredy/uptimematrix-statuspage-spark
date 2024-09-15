@@ -10,6 +10,9 @@ Feel free to use this site as a template or to suggest improvements.
 > [!NOTE]
 > This repository may not get some/all updates done on [UptimeMatrix](https://uptimematrix.com).
 
+> [!NOTE]
+> Spark may not be as stable as [Pulse](https://github.com/layeredy/uptimematrix-statuspage-pulse). If you need stability, use Pulse.
+
 ![layeredy](https://www.uptimematrix.com/assets/homepage-darkmode.png)
 
 > [!TIP]
