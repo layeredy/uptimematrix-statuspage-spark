@@ -204,7 +204,7 @@ function updateServices(services) {
 
 function updateMaintenanceAlerts(alerts) {
     const maintenanceAlertsContainer = document.getElementById('maintenance-alerts');
-    maintenanceAlertsContainer.innerHTML = '<h2>Upcoming maintenance</h2>';
+    maintenanceAlertsContainer.innerHTML = '<h2>Upcoming maintenance(s)</h2>';
 
     if (alerts && alerts.length > 0) {
         alerts.forEach(alert => {
