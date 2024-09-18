@@ -1,3 +1,4 @@
+
 function setCookie(name, value, days) {
     let expires = "";
     if (days) {
@@ -31,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(data => {
             if (data.sections.announcementBar) updateAnnouncementBar(data.announcement);
-            updateOverallStatus(data.services, data.RandomOperationalMessage);
+            updateOverallStatus(data.services, data.RandomOperationalMessage, data);
             updateServices(data.services);
             if (data.sections.maintenanceAlerts) updateMaintenanceAlerts(data.maintenanceAlerts);
             if (data.sections.statusUpdates) updateStatusUpdates(data.statusUpdates);
@@ -110,15 +111,41 @@ function updateAnnouncementBar(announcement) {
     }
 }
 
-function updateOverallStatus(services, RandomOperationalMessage) {
+function updateOverallStatus(services, RandomOperationalMessage, data) {
     const overallStatusElement = document.getElementById('overall-status');
-    const allStatuses = Object.values(services).flatMap(group => Object.values(group));
-    let overallStatus = 'Operational';
 
-    if (allStatuses.some(status => status === 'Issue')) {
-        overallStatus = 'Issue';
-    } else if (allStatuses.some(status => status === 'Degraded')) {
-        overallStatus = 'Degraded';
+    let isMaintenanceOngoing = false;
+    if (data.maintenanceAlerts && data.maintenanceAlerts.length > 0) {
+        const now = new Date();
+        data.maintenanceAlerts.forEach(alert => {
+            if (alert.start && alert.end) {
+                const startTime = new Date(alert.start);
+                const endTime = new Date(alert.end);
+                if (now >= startTime && now <= endTime) {
+                    isMaintenanceOngoing = true;
+                }
+            }
+        });
+    }
+    if (isMaintenanceOngoing) {
+        overallStatusElement.innerHTML = `
+            <div class="status-icon">//</div>
+            Undergoing maintenance
+        `;
+        overallStatusElement.className = 'status-maintenance';
+        return;
+    }
+
+    let overallStatus = 'Operational';
+    if (data.OverallStatus && data.OverallStatus !== 'NoOverride') {
+        overallStatus = data.OverallStatus;
+    } else {
+        const allStatuses = Object.values(services).flatMap(group => Object.values(group));
+        if (allStatuses.some(status => status === 'Issue')) {
+            overallStatus = 'Issue';
+        } else if (allStatuses.some(status => status === 'Degraded')) {
+            overallStatus = 'Degraded';
+        }
     }
 
     let statusText = 'All systems operational';
@@ -140,6 +167,9 @@ function updateOverallStatus(services, RandomOperationalMessage) {
     } else if (overallStatus === 'Issue') {
         statusText = 'Major outage detected';
         statusIcon = '✕';
+    } else {
+        statusText = overallStatus;
+        statusIcon = '?';
     }
 
     overallStatusElement.innerHTML = `
@@ -241,10 +271,19 @@ function createAlertElement(item, className) {
     title.textContent = item.title;
     element.appendChild(title);
 
-    const date = document.createElement('p');
-    date.className = 'date';
-    date.textContent = new Date(item.date).toLocaleString();
-    element.appendChild(date);
+    if (item.start && item.end) {
+        const date = document.createElement('p');
+        date.className = 'date';
+        const startTime = new Date(item.start).toLocaleString();
+        const endTime = new Date(item.end).toLocaleString();
+        date.textContent = `From ${startTime} to ${endTime}`;
+        element.appendChild(date);
+    } else if (item.date) {
+        const date = document.createElement('p');
+        date.className = 'date';
+        date.textContent = new Date(item.date).toLocaleString();
+        element.appendChild(date);
+    }
 
     const message = document.createElement('p');
     message.textContent = item.message;
