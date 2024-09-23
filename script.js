@@ -1,4 +1,3 @@
-
 function setCookie(name, value, days) {
     let expires = "";
     if (days) {
@@ -234,15 +233,17 @@ function updateServices(services) {
 
 function updateMaintenanceAlerts(alerts) {
     const maintenanceAlertsContainer = document.getElementById('maintenance-alerts');
-    maintenanceAlertsContainer.innerHTML = '<h2>Upcoming maintenance(s)</h2>';
 
     if (alerts && alerts.length > 0) {
+        const headingText = alerts.length > 1 ? 'Upcoming maintenances:' : 'Upcoming maintenance:';
+        maintenanceAlertsContainer.innerHTML = `<h2>${headingText}</h2>`;
+
         alerts.forEach(alert => {
             const alertElement = createAlertElement(alert, 'alert');
             maintenanceAlertsContainer.appendChild(alertElement);
         });
     } else {
-        maintenanceAlertsContainer.innerHTML += '<p>No current upcoming maintenances.</p>';
+        maintenanceAlertsContainer.innerHTML = '<h2>No current upcoming maintenances.</h2>';
     }
 }
 
