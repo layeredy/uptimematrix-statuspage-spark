@@ -8,8 +8,6 @@ This is the status-page template "Spark" for UptimeMatrix, the uptime monitoring
 
 Feel free to use this site as a template or to suggest improvements. 
 
-⚠️ The community/open-source version of our status page uses JSON, which is outdated and generally slower compared to the database version used on UptimeMatrix. This repository only receives UI/UX updates and does not include API or endpoint updates. Pull requests that propose changes to site control or management will not be merged.
-
 ![layeredy](https://www.uptimematrix.com/assets/homepage-darkmode.png)
 
 > [!TIP]
