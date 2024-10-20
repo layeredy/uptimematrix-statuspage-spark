@@ -10,12 +10,6 @@ Feel free to use this site as a template or to suggest improvements.
 
 ⚠️ The community/open-source version of our status page uses JSON, which is outdated and generally slower compared to the database version used on UptimeMatrix. This repository only receives UI/UX updates and does not include API or endpoint updates. Pull requests that propose changes to site control or management will not be merged.
 
-> [!NOTE]
-> This repository may not get some/all updates done on [UptimeMatrix](https://uptimematrix.com).
-
-> [!NOTE]
-> Spark may not be as stable as [Pulse](https://github.com/layeredy/uptimematrix-statuspage-pulse). If you need stability, use Pulse.
-
 ![layeredy](https://www.uptimematrix.com/assets/homepage-darkmode.png)
 
 > [!TIP]
