@@ -5,6 +5,8 @@
   --alert-color: #ef4444;
   --success-color: #22c55e;
   --warning-color: #f59e0b;
+  --slow-color: #ff9800;
+  --maintenance-color: #9c27b0;  
   --dropdown-bg: #1e293b;
   --card-bg: #1e293b;
   --border-radius: 10px;
@@ -215,6 +217,24 @@ h1 {
   animation: blip 2s infinite;
 }
 
+.status-slow {
+  background-color: rgba(255, 152, 0, 0.2);
+}
+
+.status-slow::before {
+  background-color: var(--slow-color);
+  animation: blip 2s infinite;
+}
+
+.status-maintenance {
+  background-color: rgba(156, 39, 176, 0.2);
+}
+
+.status-maintenance::before {
+  background-color: var(--maintenance-color);
+  animation: blip 2s infinite;
+}
+
 #overall-status {
   background-color: var(--overall-status-bg);
   color: var(--overall-status-text);
@@ -247,15 +267,31 @@ h1 {
   animation: blip 2s infinite;
 }
 
+.status-degraded .status-icon {
+  color: var(--warning-color);
+}
+
+.status-issue .status-icon {
+  color: var(--alert-color);
+}
+
+.status-slow .status-icon {
+  color: var(--slow-color);
+}
+
+.status-maintenance .status-icon {
+  color: var(--maintenance-color);
+}
+
 @keyframes blip {
   0% {
-    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
   }
   70% {
-    box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
   }
 }
 
@@ -343,6 +379,14 @@ body.light-mode .status-degraded {
 
 body.light-mode .status-issue {
   background-color: rgba(239, 68, 68, 0.1);
+}
+
+body.light-mode .status-slow {
+  background-color: rgba(255, 152, 0, 0.1);
+}
+
+body.light-mode .status-maintenance {
+  background-color: rgba(156, 39, 176, 0.1);
 }
 
 @media (max-width: 768px) {
