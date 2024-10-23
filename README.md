@@ -3,6 +3,9 @@
 # Spark by UptimeMatrix
 This is the status-page template "Spark" for UptimeMatrix, the uptime monitoring software developed by [Layeredy](https://layeredy.com)
 
+> [!NOTE]
+> Check out our documentation [here](https://github.com/uptimematrix/docs/wiki)
+
 > [!IMPORTANT]
 > **UptimeMatrix is now in early testing! Request access [here](https://forms.gle/FSQK8jjcJKxSaMkU8) or view our feed [here](https://feed.uptimematrix.com)**
 
