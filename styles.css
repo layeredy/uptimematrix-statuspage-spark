@@ -64,6 +64,7 @@ h1 {
   font-weight: 600;
   box-shadow: var(--box-shadow);
   font-size: 0.9em;
+  border-radius: var(--border-radius);
 }
 
 .alert,
